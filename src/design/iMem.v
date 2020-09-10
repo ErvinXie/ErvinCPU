@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module iMem(input clk,
+module imem(input clk,
             input rst,
             input[31:0] iaddr,
             output [31:0] idata);

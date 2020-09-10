@@ -22,13 +22,14 @@
 
 module regfile(input clk,
                input rst,
-               input reg_we,
+               input we,
                input[4:0] r1_addr,
                input[4:0] r2_addr,
                input[4:0] w_addr,
-               input [31:0] w_data,
                output [31:0] r1_data,
-               output [31:0] r2_data);
+               output [31:0] r2_data,
+               input [31:0] w_data);
+
     reg[31:0] regs[31:0];
     assign r1_data = regs[r1_addr];
     assign r2_data = regs[r2_addr];
@@ -40,10 +41,10 @@ module regfile(input clk,
                 regs[i] <= 32'b0;
         end
         // for register $0
-        else if (reg_we) begin
-            if(w_addr!=4'b0)
+        else if (we) begin
+            if (w_addr != 4'b0)begin
                 regs[w_addr] <= w_data;
+            end
         end
     end
-            
 endmodule

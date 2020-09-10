@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module dMem(input clk,
+module dmem(input clk,
             input rst,
             input we,
             input[31:0] daddr,
