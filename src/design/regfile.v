@@ -39,6 +39,7 @@ module regfile(input clk,
             for(i = 0;i <= 31;i = i+1)
                 regs[i] <= 32'b0;
         end
+        // for register $0
         else if (reg_we) begin
             if(w_addr!=4'b0)
                 regs[w_addr] <= w_data;
