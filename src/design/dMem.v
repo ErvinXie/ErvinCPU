@@ -11,7 +11,7 @@ module dmem(input clk,
     
     wire[7:0] addr;
     assign addr  = daddr[7:0];
-    assign idata = {mem[addr+3],mem[addr+2],mem[addr+1],mem[addr]};
+    assign rdata = {mem[addr+3],mem[addr+2],mem[addr+1],mem[addr]};
     
     always @(posedge clk)begin
         if (we)begin
