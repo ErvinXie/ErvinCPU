@@ -86,6 +86,33 @@ module cpu_top(input clk,
         .r2_data(r_r2_data),
         .w_data(r_w_data)
     );
+
+    wire[31:0] alu_a,alu_b,alu_c;
+    wire[10:0] alu_s;
+    alu u_alu(
+        .clk(clk),
+        .rst(rst),
+        .a(alu_a),
+        .b(alu_b),
+        .s(alu_s),
+        .c(alu_c)
+    );
+
+
+    wire dmem_we;
+    wire[31:0] 
+    dmem_addr,
+    dmem_wdata,
+    dmem_rdata;
+    dmem u_dmem(
+        .clk(clk),
+        .rst(rst),
+        .we(dmem_we),
+        .daddr(dmem_addr),
+        .wdata(dmem_wdata),
+        .rdata(dmem_rdata)
+    );
+
     
     
 endmodule

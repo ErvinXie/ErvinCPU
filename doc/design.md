@@ -8,17 +8,35 @@ Harvard Arch
 
 
 
-## Supported Instruction
+## 
 
-| Instruction | Format                  | Purpose                                                  |      |      |      |
-| ----------- | ----------------------- | -------------------------------------------------------- | ---- | ---- | ---- |
-| Lui         | LUI rt, immediate       | To load a constant into the upper half of a word         |      |      |      |
-| Addiu       | ADDIU rt, rs, immediate | To add a constant to a 32-bit integer                    |      |      |      |
-| Add         | ADD rd, rs, rt          | To add 32-bit integers. If an overflow occurs, then trap |      |      |      |
-| Lw          | LW rt, offset(base)     | To load a word from memory as a signed value             |      |      |      |
-| Sw          | SW rt, offset(base)     | To store a word to memory                                |      |      |      |
-| Beq         | BEQ rs, rt, offset      | To compare GPRs then do a PC-relative conditional branch |      |      |      |
-| J           | J target                | To branch within the current 256 MB-aligned region       |      |      |      |
-| Ori         | ORI rt, rs, immediate   | To do a bitwise logical OR with a constant               |      |      |      |
-| DIVU        | DIVU rs, rt             | To divide a 32-bit unsigned integers                     |      |      |      |
+|      |      |      |      |      |      |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+|      |      |      |      |      |      |
+
+## Control 
+
+| instruction     | alu sel | alu_in_1 | alu_in_2 | mem  |      |      |      |      |      |
+| --------------- | ------- | -------- | -------- | ---- | ---- | ---- | ---- | ---- | ---- |
+| `define lui 1   |         |          |          |      |      |      |      |      |      |
+| `define addiu 2 |         |          |          |      |      |      |      |      |      |
+| `define add 3   |         |          |          |      |      |      |      |      |      |
+| `define sub 4   |         |          |          |      |      |      |      |      |      |
+| `define lw 5    |         |          |          |      |      |      |      |      |      |
+| `define sw 6    |         |          |          |      |      |      |      |      |      |
+| `define beq 7   |         |          |          |      |      |      |      |      |      |
+| `define j 8     |         |          |          |      |      |      |      |      |      |
+| `define ori 9   |         |          |          |      |      |      |      |      |      |
+| `define divu 10 |         |          |          |      |      |      |      |      |      |
+| `define addu 11 |         |          |          |      |      |      |      |      |      |
+| `define sll 12  |         |          |          |      |      |      |      |      |      |
+| `define srl 13  |         |          |          |      |      |      |      |      |      |
 

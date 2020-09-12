@@ -27,15 +27,19 @@ module full_adder_sim();
     wire cout;
     full_adder U_full_adder(
     .a(a),
-    .b(b),
+    .b(~b+1),
     .cin(cin),
     .cout(cout),
     .s(s)
     );
+    wire[31:0] re,test;
+    assign re = a-b+cin;
+    assign test = re^s;
     always begin
         a   = $random %100;
         b   = $random %100;
         cin = $random %2;
+
         #(50);
         
     end

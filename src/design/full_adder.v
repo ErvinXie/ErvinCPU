@@ -43,7 +43,6 @@ module full_adder(input[31:0] a,
                 .s(s[i*4+3:i*4])
             );
         end
-
     endgenerate
 
 
