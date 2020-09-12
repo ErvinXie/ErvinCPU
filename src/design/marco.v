@@ -27,7 +27,7 @@
 `define addu 11
 `define sll 12
 `define srl 13
-`define noinst 14
+
 // reg w addr 
 `define reg_wa_rt 0
 `define reg_wa_rd 1
@@ -52,3 +52,8 @@
 `define nojump 0
 `define br_beq 1
 `define br_j 2
+
+//imem
+
+`define IMEM_ADDR_WIDTH 8
+`define IMEM_SIZE 256

@@ -57,7 +57,7 @@ module ctrl(
                      (inst_type==`addu)?`add_op:
                      (inst_type==`sll)?`sll_op:
                      (inst_type==`srl)?`srl_op:
-                     (inst_type==`noinst)?0:
+
                      `direct1;
    
     assign alu1_sel =(inst_type==`lui)?`alu_in1_16:

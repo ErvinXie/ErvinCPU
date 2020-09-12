@@ -22,7 +22,7 @@ module dmem(input clk,
         end
     end
     initial begin
-         $readmemb("D:/ErvinCPU/src/data/dmem.txt",mem);
+         $readmemb("D:/ErvinCPU/test/dmem.txt",mem);
     end
     
     
