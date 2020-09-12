@@ -20,7 +20,7 @@ module br(
     assign brsel = (cb==`br_beq)?((rd1==rd2)?1:0):
                     0;
     assign jumpsel = (cb==`br_j)?1:0;
-    mux2(
+    mux2 u_mux1(
         4,
         rela,
         brsel,
@@ -28,7 +28,7 @@ module br(
     );
     assign delta_new_pc = pc+delta;
 
-    mux2(
+    mux2 u_mux2( 
         delta_new_pc,
         j_addr,
         jumpsel,

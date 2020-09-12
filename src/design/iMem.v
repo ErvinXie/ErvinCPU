@@ -11,8 +11,8 @@ module imem(input clk,
     assign addr  = iaddr[7:0];
     assign idata = {mem[addr+3],mem[addr+2],mem[addr+1],mem[addr]};
     
-    // initial begin
-        // $readmemb("",mem);
-    // end
+    initial begin
+        $readmemb("D:/ErvinCPU/src/data/imem.txt",mem);
+    end
     
 endmodule

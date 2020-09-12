@@ -1,31 +1,47 @@
 `timescale 1ns / 1ps
-
+`include "marco.v"
 
 module cpu_top(input clk,
                input rst);
     
-    
+    wire[3:0] cb;
+
+    wire[15:0] 
+    offset;
+
+    wire[25:0] 
+    instr_index;
+
+    wire[31:0] 
+    reg_rd1,
+    reg_rd2,
+    pc_in;
+
     //pc
     reg[31:0] pc;
-  
-    br(
+
+    br u_br(
         reg_rd1,
         reg_rd2,
         offset,
         instr_index,
         pc,
         cb,
-        pc_in,
+        pc_in
     );
 
     always @(posedge clk)begin
         pc<=pc_in;
     end
+    always@(negedge rst) begin
+        pc<=32'b0;
+
+    end
     
    
     // inst part
     wire[31:0] inst;
-    imem (
+    imem u_imem(
         clk,
         rst,
         pc,
@@ -57,19 +73,24 @@ module cpu_top(input clk,
     
 
     // regfile
-    wire reg_we;
+    wire reg_we,mwa_sel,mwd_sel;
 
     wire[4:0] reg_wa;
 
+    wire[31:0] 
+    alu_c,
+    dmem_rdata,
+    reg_wd;
+    
 
-    mux2#(5)(
+    mux2#(5) mreg_wa(
         rt,
         rd,
         mwa_sel,
         reg_wa
     );
 
-    mux2(
+    mux2 mreg_wd(
         alu_c,
         dmem_rdata,
         mwd_sel,
@@ -89,7 +110,15 @@ module cpu_top(input clk,
     );
 
     // alu
-    mux4(
+    wire[1:0]
+    malu1sel,
+    malu2sel;
+
+    wire[31:0]
+    alu_a,
+    alu_b;
+    
+    mux4 maluin1(
         reg_rd1,
         imm_ext,
         sa_ext,
@@ -98,7 +127,7 @@ module cpu_top(input clk,
         alu_a
     );
 
-    mux4(
+    mux4 maluin2(
         reg_rd2,
         imm_ext,
         0,
@@ -109,19 +138,27 @@ module cpu_top(input clk,
 
 
     wire [31:0] hi,lo;
+    wire [`ALU_SEL_WIDTH-1:0] alu_sel;
     alu u_alu(
         .clk(clk),
         .rst(rst),
         .a(alu_a),
         .b(alu_b),
-        .s(alu_s),
+        .s(alu_sel),
         .c(alu_c),
         .hi(hi),
         .lo(lo)
     );
 
     // dmem
+    wire dmem_we;
+    wire[31:0] 
+    dmem_addr,
+    dmem_wdata;
+    assign dmem_addr = alu_c;
+    assign dmem_wdata = reg_rd2;
 
+    
     dmem u_dmem(
         .clk(clk),
         .rst(rst),
@@ -144,7 +181,7 @@ module cpu_top(input clk,
         mwd_sel,
         reg_we,
 
-        alu_s,
+        alu_sel,
         malu1sel,
         malu2sel
     );

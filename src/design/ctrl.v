@@ -26,7 +26,7 @@ module ctrl(
     assign inst_type = 
     (opcode==6'b001111)?`lui:
     (opcode==6'b001001)?`addiu:
-    (opcode==6'b000000)?`add:
+    
     (opcode==6'b100011)?`lw:
     (opcode==6'b101011)?`sw:
     (opcode==6'b000100)?`beq:
@@ -36,6 +36,8 @@ module ctrl(
 
     (opcode==6'b000000)?(
         (func==6'b011011)?`divu:
+        (func==6'b100000)?`add:
+
         (func==6'b100010)?`sub:
         (func==6'b100001)?`addu:
         (func==6'b000010)?`srl:
@@ -55,7 +57,7 @@ module ctrl(
                      (inst_type==`addu)?`add_op:
                      (inst_type==`sll)?`sll_op:
                      (inst_type==`srl)?`srl_op:
-
+                     (inst_type==`noinst)?0:
                      `direct1;
    
     assign alu1_sel =(inst_type==`lui)?`alu_in1_16:

@@ -27,7 +27,7 @@
 `define addu 11
 `define sll 12
 `define srl 13
-
+`define noinst 14
 // reg w addr 
 `define reg_wa_rt 0
 `define reg_wa_rd 1

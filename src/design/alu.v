@@ -76,8 +76,6 @@ module alu(
             hi<= divu_out_hi;
             lo<=divu_out_lo;
         end
-        
-        
     end
 
 

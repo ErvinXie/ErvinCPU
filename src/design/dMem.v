@@ -21,9 +21,9 @@ module dmem(input clk,
             mem[addr+3] <= wdata[31:24];
         end
     end
-    // initial begin
-        // $readmemb("",mem);
-    // end
+    initial begin
+         $readmemb("D:/ErvinCPU/src/data/dmem.txt",mem);
+    end
     
     
 endmodule
