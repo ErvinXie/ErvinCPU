@@ -15,7 +15,7 @@ module br(
 
     wire[31:0] rela,j_addr,delta,delta_new_pc;
     assign j_addr = {pc[31:28],instr_index,2'b00};
-    assign rela = {14'b0,offset,2'b00};
+    assign rela = {14'b0,offset,2'b00}+4;
     wire brsel,jumpsel;
     assign brsel = (cb==`br_beq)?((rd1==rd2)?1:0):
                     0;
